@@ -11,10 +11,11 @@ You need to make the following changes in your Program.cs and project.json to de
 <br/>
 In **Program.cs**
 
-*   Add UseUrls method and pass args[0] as parameter to start your app. Because Heroku web dyno will start with dynamic port after sucessful deployment. We need to use the same port in code behind also then only your app will start and listen on that port else dotnet runtime will set default port 5000. Thereby we pass port number as parameter with url in Procfile
+*   Add `UseUrls` method and pass `args[0]` as parameter to start your app. Because Heroku web dyno will start with dynamic port after sucessful deployment. We need to use the same port in code behind also then only your app will start and listen on that port else dotnet runtime will set default port 5000. Thereby we pass port number as parameter with url in Procfile
 <br/>
+```
 public static void Main(string[] args
-{<br/>
+{
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
@@ -24,16 +25,15 @@ public static void Main(string[] args
                 .Build();
 
             host.Run();
-}<br/>
+}
+```
 In **project.json**
 
 *   Add a new property called "outputName": "Your_ProjectName" in buildOptions  
 *   Remove scripts section. It has prepublish and postpublish actions which are not needed
-<br/>
-<br/>
+
 You can deploy this ASP.Net MVC website on Heroku server by clicking below button
-<br/>
-<br/>
+
 <a href="https://heroku.com/deploy?template=https://github.com/heroku-softtrends/dotnetmvc.sample/tree/master">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
